@@ -7,28 +7,26 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/Municipal_Servcies_Portal.styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/home.css" />
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Municipal_Servcies_Portal</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
+<header class="custom-header">
+    <div class="header-outer">
+        <div class="header-inner">
+            <div class="header-left">
+                <div class="header-logo">
+                    <!-- SVG icon placeholder -->
+                    <svg width="17.5" height="14" viewBox="0 0 17.5 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;left:7.25px;top:6px;"><rect width="17.5" height="14" rx="2" fill="#FFFFFF"/></svg>
+                </div>
+                <span class="header-title">Municipal Services</span>
             </div>
+            <nav class="header-nav">
+                <a href="#" class="nav-link dashboard">Dashboard</a>
+                <a href="#" class="nav-link report-issues">Report Issues</a>
+                <a href="#" class="nav-link track-status">Track Status</a>
+            </nav>
         </div>
-    </nav>
+    </div>
 </header>
 <div class="container">
     <main role="main" class="pb-3">

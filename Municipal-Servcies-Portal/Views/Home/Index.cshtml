@@ -2,7 +2,69 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<main class="main">
+    <section class="section header">
+        <h1 class="welcome-title">Welcome to Municipal Services</h1>
+        <p class="welcome-desc">
+            Access city services, report issues, and stay connected with your community. Choose from the options below to get started.
+        </p>
+    </section>
+    <section class="section cards">
+        <div class="card report-issues">
+            <div class="icon-bg blue">
+                <!-- SVG or icon here -->
+            </div>
+            <h3 class="card-title">Report Issues</h3>
+            <p class="card-desc">
+                Report potholes, broken<br>
+                streetlights, graffiti, and<br>
+                other municipal issues in<br>
+                your neighborhood.
+            </p>
+            <button class="card-btn primary">Get Started</button>
+        </div>
+        <div class="card local-events">
+            <div class="icon-bg gray">
+                <!-- SVG or icon here -->
+            </div>
+            <h3 class="card-title gray">Local Events</h3>
+            <p class="card-desc gray">
+                Discover upcoming<br>
+                community events, town<br>
+                halls, and public meetings<br>
+                in your area.
+            </p>
+            <button class="card-btn secondary">Coming Soon</button>
+        </div>
+        <div class="card service-request">
+            <div class="icon-bg gray">
+                <!-- SVG or icon here -->
+            </div>
+            <h3 class="card-title gray">Service Request<br>Status</h3>
+            <p class="card-desc gray">
+                Track the progress of your<br>
+                submitted service<br>
+                requests and view<br>
+                resolution updates.
+            </p>
+            <button class="card-btn secondary">Coming Soon</button>
+        </div>
+    </section>
+    <section class="section stats">
+        <h3 class="stats-title">Service Statistics</h3>
+        <div class="stats-row">
+            <div class="stats-card">
+                <div class="stats-value">1,247</div>
+                <div class="stats-label">Issues Resolved</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-value">89</div>
+                <div class="stats-label">Active Requests</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-value">24h</div>
+                <div class="stats-label">Avg Response Time</div>
+            </div>
+        </div>
+    </section>
+</main>

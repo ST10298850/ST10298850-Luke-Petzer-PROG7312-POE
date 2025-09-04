@@ -19,4 +19,107 @@ html {
 
 body {
   margin-bottom: 60px;
+    background-color: #F8FAFC;
 }
+
+/* Responsive Header Styles */
+.custom-header {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 65px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E5E7EB;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 0;
+    z-index: 100;
+    position: sticky;
+    top: 0;
+}
+.header-outer {
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 64px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+}
+.header-inner {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.header-logo {
+    width: 32px;
+    height: 32px;
+    background: #1E40AF;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-title {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    color: #374151;
+}
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.nav-link {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+.nav-link.dashboard {
+    font-weight: 400;
+    color: #6B7280;
+}
+.nav-link.report-issues {
+    font-weight: 500;
+    color: #1E40AF;
+}
+.nav-link.track-status {
+    font-weight: 400;
+    color: #6B7280;
+}
+@media (max-width: 900px) {
+    .header-outer {
+        padding: 0 8px;
+    }
+    .header-title {
+        font-size: 16px;
+    }
+    .header-nav {
+        gap: 12px;
+    }
+}
+@media (max-width: 600px) {
+    .header-inner {
+        flex-direction: column;
+        height: auto;
+        gap: 8px;
+    }
+    .header-nav {
+        justify-content: flex-start;
+        width: 100%;
+        gap: 8px;
+    }
+}
+/* End Responsive Header Styles */
