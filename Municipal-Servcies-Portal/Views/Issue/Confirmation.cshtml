@@ -1,3 +1,73 @@
 @{
     ViewData["Title"] = "Confirmation Page";
 }
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+<main class="confirmation-container">
+    <section class="confirmation-card">
+        <div class="confirmation-header">
+            <div class="confirmation-success-icon">
+                <img src="~/images/icons/ic_sucess_tick.svg" alt="Success Tick Icon" width="32" height="32" />
+            </div>
+            <div class="confirmation-success-title">Success!</div>
+            <div class="confirmation-success-desc">Your issue has been successfully reported!</div>
+        </div>
+        <div class="confirmation-summary">
+            <div class="summary-title">Report Summary</div>
+            <div class="summary-section summary-ref bg-blue-100">
+                <div class="summary-label">Reference Number</div>
+                <div class="summary-value">#MSP-2024-001247</div>
+            </div>
+            <div class="summary-section">
+                <div class="summary-label">Location</div>
+                <div class="summary-value">123 Main Street, Downtown District</div>
+                <div class="summary-subvalue">Coordinates: 40.7128, -74.0060</div>
+            </div>
+            <div class="summary-section">
+                <div class="summary-label">Category</div>
+                <div class="summary-value flex align-center gap-8">
+                    <img src="~/images/icons/ic_road.svg" alt="Road Icon" width="32" height="32" />
+                    <span>Road Maintenance</span>
+                </div>
+            </div>
+            <div class="summary-section">
+                <div class="summary-label">Description</div>
+                <div class="summary-value">Large pothole on Main Street causing traffic issues. The hole is approximately 3 feet wide and poses a safety hazard for vehicles and pedestrians.</div>
+            </div>
+            <div class="summary-section">
+                <div class="summary-label">Attached File</div>
+                <div class="summary-value flex align-center gap-8">
+                    <img src="~/images/icons/ic_attatched_file.svg" alt="Attatched File Icon" width="32" height="32" />
+                    <span>pothole_main_street.jpg</span>
+                    <span class="summary-file-size">(2.4 MB)</span>
+                </div>
+            </div>
+        </div>
+        <div class="confirmation-next-steps">
+            <div class="next-steps-title">What happens next?</div>
+            <div class="next-steps-list">
+                <div class="next-step flex align-center">
+                    <div class="next-step-number">1</div>
+                    <div class="next-step-desc">Your report will be reviewed within 24 hours</div>
+                </div>
+                <div class="next-step flex align-center">
+                    <div class="next-step-number">2</div>
+                    <div class="next-step-desc">We'll assign it to the appropriate department</div>
+                </div>
+                <div class="next-step flex align-center">
+                    <div class="next-step-number">3</div>
+                    <div class="next-step-desc">You'll receive updates via email at the address provided</div>
+                </div>
+            </div>
+        </div>
+        <div class="confirmation-actions flex gap-16">
+            <a href="/Issue/Create" class="confirmation-btn primary flex align-center">
+                <img src="~/images/icons/ic_plus.svg" alt="Plus Icon" width="32" height="32" />
+                <span>Report Another Issue</span>
+            </a>
+            <a href="/" class="confirmation-btn secondary flex align-center">
+                <img src="~/images/icons/ic_home.svg" alt="Home Icon" width="32" height="32" />                
+                <span>Return to Main Menu</span>
+            </a>
+        </div>
+    </section>
+</main>

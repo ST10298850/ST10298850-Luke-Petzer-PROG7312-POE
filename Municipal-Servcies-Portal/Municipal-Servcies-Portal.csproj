@@ -7,4 +7,8 @@
         <RootNamespace>Municipal_Servcies_Portal</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\images\icons\" />
+    </ItemGroup>
+
 </Project>
