@@ -1,0 +1,234 @@
+/* Breadcrumb styles */
+.breadcrumb {
+    margin-bottom: 16px;
+    align-items: center;
+    font-size: 14px;
+}
+.breadcrumb-link {
+    color: #6B7280;
+    text-decoration: none;
+    font-weight: 400;
+    margin-right: 8px;
+}
+.breadcrumb-link.active {
+    color: #1E40AF;
+    font-weight: 400;
+}
+.breadcrumb-separator {
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+}
+
+/* Page title and description */
+.page-title {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #374151;
+    margin-bottom: 8px;
+}
+.page-desc {
+    font-size: 16px;
+    color: #6B7280;
+    margin-bottom: 24px;
+}
+
+/* Info banner */
+.info-banner {
+    max-width: 832px;
+    margin: 0 auto 32px auto;
+    background: linear-gradient(90deg, #1E40AF 0%, #3B82F6 100%);
+    color: #fff;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    border-radius: 12px;
+}
+.info-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.info-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    color: #fff;
+}
+.info-desc {
+    font-size: 16px;
+    color: #DBEAFE;
+}
+
+/* Form styles */
+.issue-form {
+    max-width: 832px;
+    margin: 0 auto 32px auto;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+.form-header {
+    background: #DBEAFE;
+    border-bottom: 1px solid #E5E7EB;
+    border-radius: 12px 12px 0 0;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.form-header-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #1E40AF;
+    margin-left: 8px;
+}
+.form-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.form-label {
+    font-weight: 500;
+    font-size: 14px;
+    color: #374151;
+    gap: 8px;
+}
+.form-label-required {
+    color: #EF4444;
+    font-weight: 500;
+    font-size: 14px;
+    margin-left: 4px;
+}
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    background: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+.form-hint {
+    font-size: 12px;
+    color: #6B7280;
+}
+
+/* Upload area */
+.upload-area {
+    border: 2px dashed #D1D5DB;
+    border-radius: 8px;
+    padding: 24px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #fff;
+}
+.upload-icon {
+    margin-bottom: 8px;
+}
+.upload-text {
+    font-weight: 500;
+    font-size: 16px;
+    color: #1E40AF;
+    text-align: center;
+}
+.upload-hint {
+    font-size: 12px;
+    color: #6B7280;
+    text-align: center;
+}
+
+/* Progress bar */
+.form-progress {
+    background: #F3F4F6;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+}
+.form-progress-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.form-progress-label {
+    font-weight: 500;
+    font-size: 14px;
+    color: #374151;
+}
+.form-progress-value {
+    font-weight: 400;
+    font-size: 14px;
+    color: #1E40AF;
+}
+.form-progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #E5E7EB;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+.form-progress-bar {
+    height: 8px;
+    background: #1E40AF;
+    border-radius: 9999px;
+}
+
+/* Form actions */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px;
+    border-top: 1px solid #E5E7EB;
+    background: #F3F4F6;
+    border-radius: 0 0 12px 12px;
+}
+.form-action-icon {
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 900px) {
+    .main, .issue-form {
+        max-width: 100%;
+        padding: 0 8px;
+    }
+    .info-banner, .form-header, .form-body, .form-actions {
+        padding: 16px;
+    }
+}
+@media (max-width: 600px) {
+    .main, .issue-form {
+        padding: 0 4px;
+    }
+    .info-banner, .form-header, .form-body, .form-actions {
+        padding: 8px;
+    }
+    .form-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+

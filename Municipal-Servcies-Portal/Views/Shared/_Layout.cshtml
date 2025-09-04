@@ -6,8 +6,9 @@
     <title>@ViewData["Title"] - Municipal_Servcies_Portal</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/Municipal_Servcies_Portal.styles.css" asp-append-version="true"/>
+    @* <link rel="stylesheet" href="~/Municipal_Servcies_Portal.styles.css" asp-append-version="true"/> *@
     <link rel="stylesheet" href="~/css/home.css" />
+    <link rel="stylesheet" href="~/css/issues.css" />
 </head>
 <body>
 <header class="custom-header">
@@ -21,9 +22,10 @@
                 <span class="header-title">Municipal Services</span>
             </div>
             <nav class="header-nav">
-                <a href="#" class="nav-link dashboard">Dashboard</a>
-                <a href="#" class="nav-link report-issues">Report Issues</a>
-                <a href="#" class="nav-link track-status">Track Status</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">Dashboard</a>
+                <a asp-area="" asp-controller="Issue" asp-action="Create" class="nav-link">Report Issues</a>
+                <a asp-area="" asp-controller="Issue" asp-action="Confirmation" class="nav-link">Local Events</a>
+                <a asp-area="" asp-controller="Issue" asp-action="Confirmation" class="nav-link">Track Status</a>
             </nav>
         </div>
     </div>

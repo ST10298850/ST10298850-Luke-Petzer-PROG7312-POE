@@ -1,14 +1,127 @@
 @{
     ViewData["Title"] = "Create Page";
 }
-<!DOCTYPE html>
-
-
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
+<main class="main">
+    <section class="section header">
+        <nav class="breadcrumb flex gap-8" aria-label="Breadcrumb">
+            <a href="/" class="breadcrumb-link">Home</a>
+            <span class="breadcrumb-separator">
+                <!-- SVG arrow -->
+                <svg width="8" height="12" viewBox="0 0 8 12" fill="none"><path d="M2 2l4 4-4 4" stroke="#6B7280" stroke-width="2" fill="none"/></svg>
+            </span>
+            <a href="/Issue/Create" class="breadcrumb-link active">Report Issues</a>
+        </nav>
+        <h1 class="page-title">Report an Issue</h1>
+        <p class="page-desc">Help us improve your community by reporting issues in your area.</p>
+    </section>
+    <section class="info-banner shadow-md flex align-center">
+        <div class="info-icon">
+            <!-- Heart SVG -->
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 18s-7-4.35-7-10A5 5 0 0110 3a5 5 0 017 5c0 5.65-7 10-7 10z" fill="#fff"/></svg>
+        </div>
+        <div class="info-text">
+            <div class="info-title">Thanks for improving your community!</div>
+            <div class="info-desc">Every report helps make our city a better place to live.</div>
+        </div>
+    </section>
+    <form class="issue-form rounded-12 shadow-sm bg-white">
+        <div class="form-header bg-blue-100 flex align-center">
+            <div class="form-header-icon">
+                <!-- Info SVG -->
+                <svg width="14" height="18" viewBox="0 0 14 18" fill="none"><rect width="14" height="18" rx="2" fill="#1E40AF"/></svg>
+            </div>
+            <h3 class="form-header-title">Issue Details</h3>
+        </div>
+        <div class="form-body">
+            <!-- Location -->
+            <div class="form-group">
+                <label class="form-label flex align-center gap-4" for="location">
+                    <span class="form-label-icon">
+                        <!-- Location SVG -->
+                        <svg width="12" height="14" viewBox="0 0 12 14" fill="none"><rect width="12" height="14" rx="2" fill="#1E40AF"/></svg>
+                    </span>
+                    <span>Location</span>
+                    <span class="form-label-required">*</span>
+                </label>
+                <input type="text" id="location" name="location" class="form-input" placeholder="Enter street address or landmark" />
+                <div class="form-hint">Please be as specific as possible to help us locate the issue quickly.</div>
+            </div>
+            <!-- Category -->
+            <div class="form-group">
+                <label class="form-label flex align-center gap-4" for="category">
+                    <span class="form-label-icon">
+                        <!-- Category SVG -->
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect width="14" height="14" rx="2" fill="#1E40AF"/></svg>
+                    </span>
+                    <span>Issue Category</span>
+                    <span class="form-label-required">*</span>
+                </label>
+                <select id="category" name="category" class="form-select">
+                    <option value="">Select a category</option>
+                    <option value="pothole">Pothole</option>
+                    <option value="streetlight">Streetlight</option>
+                    <option value="graffiti">Graffiti</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <!-- Description -->
+            <div class="form-group">
+                <label class="form-label flex align-center gap-4" for="description">
+                    <span class="form-label-icon">
+                        <!-- Description SVG -->
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect width="14" height="14" rx="2" fill="#1E40AF"/></svg>
+                    </span>
+                    <span>Description</span>
+                    <span class="form-label-required">*</span>
+                </label>
+                <textarea id="description" name="description" class="form-textarea" rows="6" placeholder="Provide detailed description of the issue..."></textarea>
+                <div class="form-hint">Include as much detail as possible to help us understand and resolve the issue.</div>
+            </div>
+            <!-- Attachments -->
+            <div class="form-group">
+                <label class="form-label flex align-center gap-4" for="attachments">
+                    <span class="form-label-icon">
+                        <!-- Attachment SVG -->
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect width="14" height="14" rx="2" fill="#1E40AF"/></svg>
+                    </span>
+                    <span>Attach Photos or Documents</span>
+                </label>
+                <div class="upload-area flex-col align-center rounded-8">
+                    <div class="upload-icon">
+                        <!-- Upload SVG -->
+                        <svg width="38" height="30" viewBox="0 0 38 30" fill="none"><rect width="38" height="30" rx="4" fill="#6B7280"/></svg>
+                    </div>
+                    <div class="upload-text text-blue">Click to upload or drag and drop</div>
+                    <div class="upload-hint text-gray">PNG, JPG, PDF up to 10MB</div>
+                    <input type="file" id="attachments" name="attachments" multiple style="display:none;" />
+                </div>
+            </div>
+            <!-- Progress Bar -->
+            <div class="form-progress rounded-8 bg-gray-100">
+                <div class="form-progress-header flex justify-between">
+                    <span class="form-progress-label">Form Completion</span>
+                    <span class="form-progress-value text-blue">25%</span>
+                </div>
+                <div class="form-progress-bar-bg rounded-full">
+                    <div class="form-progress-bar rounded-full" style="width:25%;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions flex justify-between">
+            <button type="button" class="card-btn secondary flex align-center">
+                <span class="form-action-icon">
+                    <!-- Back Arrow SVG -->
+                    <svg width="14" height="16" viewBox="0 0 14 16" fill="none"><rect width="14" height="16" rx="2" fill="#374151"/></svg>
+                </span>
+                <span>Back to Main Menu</span>
+            </button>
+            <button type="submit" class="card-btn primary flex align-center">
+                <span class="form-action-icon">
+                    <!-- Submit SVG -->
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect width="16" height="16" rx="2" fill="#fff"/></svg>
+                </span>
+                <span>Submit Report</span>
+            </button>
+        </div>
+    </form>
+</main>
