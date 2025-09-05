@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/css/home.css" />
     <link rel="stylesheet" href="~/css/issues.css" />
     <link rel="stylesheet" href="~/css/confirmation.css" />
+    <link rel="stylesheet" href="~/css/comingsoon.css" />
 </head>
 <body>
 <header class="custom-header">
@@ -17,15 +18,15 @@
         <div class="header-inner">
             <div class="header-left">
                 <div class="header-logo">
-                    <img src="~/images/icons/ic_header.svg" alt="Header Icon" width="32" height="32" />
+                    <img src="~/images/icons/ic_header.svg" alt="Header Icon" width="13.5" height="18" />
                 </div>
                 <span class="header-title">Municipal Services</span>
             </div>
             <nav class="header-nav">
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">Dashboard</a>
                 <a asp-area="" asp-controller="Issue" asp-action="Create" class="nav-link">Report Issues</a>
-                <a asp-area="" asp-controller="Issue" asp-action="Confirmation" class="nav-link">Local Events</a>
-                <a asp-area="" asp-controller="Issue" asp-action="Confirmation" class="nav-link">Track Status</a>
+                <a asp-area="" asp-controller="Home" asp-action="ComingSoon" class="nav-link">Local Events</a>
+                <a asp-area="" asp-controller="Home" asp-action="ComingSoon" class="nav-link">Track Status</a>
             </nav>
         </div>
     </div>
@@ -36,9 +37,40 @@
     </main>
 </div>
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2025 - Municipal_Servcies_Portal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+<footer class="main-footer">
+    <div class="footer-content">
+        <div class="footer-sections">
+            <div class="footer-section">
+                <div class="footer-title">Contact Information</div>
+                <div class="footer-contact-item">
+                    <img src="~/images/icons/ic_phone.svg" alt="Phone" class="footer-icon" width="16" height="16" />
+                    <span>(555) 123-4567</span>
+                </div>
+                <div class="footer-contact-item">
+                    <img src="~/images/icons/ic_email.svg" alt="Email" class="footer-icon" width="16" height="16" />
+                    <span>services@springfield.gov</span>
+                </div>
+                <div class="footer-contact-item">
+                    <img src="~/images/icons/ic_location_footer.svg" alt="Address" class="footer-icon" width="12" height="16" />
+                    <span>123 City Hall Drive, Springfield</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <div class="footer-title">Office Hours</div>
+                <div class="footer-hours-item">Monday - Friday: 8:00 AM - 5:00 PM</div>
+                <div class="footer-hours-item">Saturday: 9:00 AM - 1:00 PM</div>
+                <div class="footer-hours-item">Sunday: Closed</div>
+            </div>
+            <div class="footer-section">
+                <div class="footer-title">Emergency Services</div>
+                <div class="footer-emergency-item">For emergencies, call 911</div>
+                <div class="footer-emergency-item">Non-emergency: (555) 123-4568</div>
+                <div class="footer-emergency-item">24/7 Service Line: (555) 123-4569</div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 City of Springfield. All rights reserved.
+        </div>
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

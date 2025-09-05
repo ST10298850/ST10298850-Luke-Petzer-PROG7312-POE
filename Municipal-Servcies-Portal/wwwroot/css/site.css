@@ -123,3 +123,98 @@ body {
     }
 }
 /* End Responsive Header Styles */
+
+/* Main Footer Styles */
+.main-footer {
+    width: 100%;
+    background: linear-gradient(0deg, #1F2937 0%, #1F2937 100%), #1F2937;
+    color: #fff;
+    padding: 0;
+    margin-top: 48px;
+}
+.footer-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+.footer-sections {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 48px 0 0 0;
+}
+.footer-section {
+    flex: 1 1 0;
+    min-width: 220px;
+    max-width: 384px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.footer-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #fff;
+    margin-bottom: 8px;
+}
+.footer-contact-item, .footer-hours-item, .footer-emergency-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #D1D5DB;
+}
+.footer-contact-item .footer-icon,
+.footer-contact-item img,
+.footer-emergency-item .footer-icon {
+    flex-shrink: 0;
+}
+.footer-contact-item span,
+.footer-emergency-item span {
+    color: #D1D5DB;
+}
+.footer-hours-item {
+    color: #D1D5DB;
+}
+.footer-emergency-item {
+    color: #D1D5DB;
+}
+.footer-bottom {
+    width: 100%;
+    text-align: center;
+    color: #9CA3AF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 32px 0 24px 0;
+    margin-top: 24px;
+}
+@media (max-width: 1000px) {
+    .footer-sections {
+        flex-direction: column;
+        gap: 32px;
+        padding: 32px 0 0 0;
+    }
+    .footer-section {
+        max-width: 100%;
+    }
+}
+@media (max-width: 600px) {
+    .footer-content {
+        padding: 0 8px;
+    }
+    .footer-sections {
+        gap: 16px;
+        padding: 24px 0 0 0;
+    }
+    .footer-bottom {
+        padding: 16px 0 12px 0;
+        font-size: 14px;
+    }
+}
+/* End Main Footer Styles */

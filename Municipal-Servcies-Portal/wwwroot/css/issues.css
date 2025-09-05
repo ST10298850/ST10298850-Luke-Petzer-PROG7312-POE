@@ -136,16 +136,23 @@
 
 /* Upload area */
 .upload-area {
-    border: 2px dashed #D1D5DB;
-    border-radius: 8px;
-    padding: 24px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    padding: 24px;
+    border: 2px dashed #D1D5DB;
+    border-radius: 8px;
     background: #fff;
+    gap: 8px;
 }
 .upload-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 8px;
+    width: 32px;
+    height: 32px;
 }
 .upload-text {
     font-weight: 500;
@@ -205,9 +212,299 @@
     border-radius: 0 0 12px 12px;
 }
 .form-action-icon {
-    margin-right: 8px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 0;
+}
+
+.card-btn.secondary {
+    box-sizing: border-box;
+    width: 210px;
+    height: 50px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    background: #fff;
+    color: #374151;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.card-btn.secondary:hover {
+    background: #F3F4F6;
+    color: #1E40AF;
+    border-color: #1E40AF;
+}
+.card-btn.secondary span:last-child {
+    display: inline;
+    align-items: center;
+    height: auto;
+    font-size: 16px;
+    line-height: 19px;
+    color: #374151;
+    text-align: center;
+    margin: 0;
+}
+
+/* Custom Back Button - Exact Specification Match */
+.back-btn-custom {
+    box-sizing: border-box;
+    position: relative;
+    width: 209.55px;
+    height: 50px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    background: #fff;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.back-btn-custom:hover {
+    background: #F9FAFB;
+    border-color: #1E40AF;
+}
+
+.back-btn-custom .back-icon-container {
+    position: absolute;
+    width: 14px;
+    height: 24px;
+    left: 25px;
+    top: 13px;
+    border-radius: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+.back-btn-custom .back-icon-container img {
+    position: absolute;
+    width: 14px;
+    height: 16px;
+    left: 0px;
+    top: 3px;
+    border-radius: 0px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.back-btn-custom .back-text {
+    position: absolute;
+    width: 143px;
+    height: 24px;
+    left: 47px;
+    top: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Form Actions Container - Exact Specification */
+.form-actions-container {
+    position: relative;
+    width: 830px;
+    height: 83px;
+    background: #F3F4F6;
+    border-radius: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+/* Back Button - Absolute Positioning */
+.btn-back-absolute {
+    box-sizing: border-box;
+    position: relative;
+    width: 209.55px;
+    height: 50px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    background: #fff;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.btn-back-absolute:hover {
+    background: #F9FAFB;
+    border-color: #1E40AF;
+}
+
+.btn-back-absolute .icon-container {
+    position: absolute;
+    width: 14px;
+    height: 16px;
+    left: 25px;
+    top: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-back-absolute .icon-container img {
+    width: 14px;
+    height: 16px;
+    flex: none;
+}
+
+.btn-back-absolute .text-content {
+    position: absolute;
+    width: 143px;
+    height: 19px;
+    left: 47px;
+    top: 15.5px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #374151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Submit Button - Flexbox with Absolute Internal Positioning */
+.btn-submit-primary {
+    position: relative;
+    width: 190.98px;
+    height: 50px;
+    background: #1E40AF;
+    border-radius: 8px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-submit-primary:hover {
+    background: #1E3A8A;
+}
+
+.btn-submit-primary .icon-container {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 32px;
+    top: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-submit-primary .icon-container img {
+    width: 16px;
+    height: 16px;
+    flex: none;
+}
+
+.btn-submit-primary .text-content {
+    position: absolute;
+    width: 108px;
+    height: 19px;
+    left: 56px;
+    top: 15.5px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Alternative Flexbox Approach for Better Responsiveness */
+.btn-back-flex {
+    box-sizing: border-box;
+    width: 209.55px;
+    height: 50px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    background: #fff;
+    color: #374151;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 24px;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.btn-back-flex:hover {
+    background: #F9FAFB;
+    border-color: #1E40AF;
+}
+
+.btn-back-flex .icon-wrapper {
+    flex-shrink: 0;
+    width: 14px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-submit-flex {
+    width: 190.98px;
+    height: 50px;
+    background: #1E40AF;
+    border-radius: 8px;
+    border: none;
+    color: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 24px;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-submit-flex:hover {
+    background: #1E3A8A;
+}
+
+.btn-submit-flex .icon-wrapper {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media (max-width: 900px) {
@@ -231,4 +528,3 @@
         gap: 8px;
     }
 }
-

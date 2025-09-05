@@ -1,0 +1,119 @@
+/* Coming Soon Page Styles */
+.comingsoon-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    padding: 48px 0;
+}
+.comingsoon-card {
+    width: 100%;
+    max-width: 448px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1), 0px 10px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 24px 24px 24px;
+    font-family: 'Montserrat', sans-serif;
+}
+.comingsoon-icon-bg {
+    width: 96px;
+    height: 96px;
+    background: #DBEAFE;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+.comingsoon-title {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #111827;
+    text-align: center;
+    margin-bottom: 12px;
+}
+.comingsoon-subtitle {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 28px;
+    color: #4B5563;
+    text-align: center;
+    margin-bottom: 16px;
+}
+.comingsoon-desc {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #6B7280;
+    text-align: center;
+    margin-bottom: 32px;
+}
+.comingsoon-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+.comingsoon-btn {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px 0;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.comingsoon-btn.primary {
+    background: #1E40AF;
+    color: #fff;
+    border: none;
+}
+.comingsoon-btn.primary:hover {
+    background: #3749bb;
+}
+.comingsoon-btn.secondary {
+    background: #fff;
+    color: #1E40AF;
+    border: 1px solid #1E40AF;
+}
+.comingsoon-btn.secondary:hover {
+    background: #F3F4F6;
+}
+.comingsoon-btn-icon.secondary {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+.comingsoon-btn-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+@media (max-width: 600px) {
+    .comingsoon-card {
+        max-width: 100%;
+        padding: 16px 4px;
+    }
+    .comingsoon-actions {
+        gap: 8px;
+    }
+    .comingsoon-btn {
+        max-width: 100%;
+        font-size: 15px;
+    }
+}
+
