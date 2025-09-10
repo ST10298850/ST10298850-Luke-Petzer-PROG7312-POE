@@ -21,7 +21,7 @@
                 other municipal issues in<br>
                 your neighborhood.
             </p>
-            <button class="card-btn primary">Get Started</button>
+            <button class="card-btn primary" id="getStartedBtn">Get Started</button>
         </div>
         <div class="card local-events">
             <div class="icon-bg gray">
@@ -68,3 +68,13 @@
         </div>
     </section>
 </main>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('getStartedBtn');
+    if (btn) {
+      btn.addEventListener('click', function() {
+        window.location.href = '/Issue/Create';
+      });
+    }
+  });
+</script>

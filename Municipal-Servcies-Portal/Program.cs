@@ -2,6 +2,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<Municipal_Servcies_Portal.Services.IssueService>();
 
 var app = builder.Build();
 

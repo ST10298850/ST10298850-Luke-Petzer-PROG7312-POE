@@ -1,3 +1,4 @@
+@model Municipal_Servcies_Portal.Models.Issue
 @{
     ViewData["Title"] = "Confirmation Page";
 }
@@ -15,32 +16,67 @@
             <div class="summary-title">Report Summary</div>
             <div class="summary-section summary-ref bg-blue-100">
                 <div class="summary-label">Reference Number</div>
-                <div class="summary-value">#MSP-2024-001247</div>
+                <div class="summary-value">#MSP-@DateTime.Now.ToString("yyyy")-@(new Random().Next(100000, 999999))</div>
             </div>
             <div class="summary-section">
                 <div class="summary-label">Location</div>
-                <div class="summary-value">123 Main Street, Downtown District</div>
-                <div class="summary-subvalue">Coordinates: 40.7128, -74.0060</div>
+                <div class="summary-value">@Model.Location</div>
             </div>
             <div class="summary-section">
                 <div class="summary-label">Category</div>
                 <div class="summary-value flex align-center gap-8">
-                    <img src="~/images/icons/ic_road.svg" alt="Road Icon" width="32" height="32" />
-                    <span>Road Maintenance</span>
+                    <img src="~/images/icons/ic_road.svg" alt="Category Icon" width="32" height="32" />
+                    <span>@Model.Category</span>
                 </div>
             </div>
             <div class="summary-section">
                 <div class="summary-label">Description</div>
-                <div class="summary-value">Large pothole on Main Street causing traffic issues. The hole is approximately 3 feet wide and poses a safety hazard for vehicles and pedestrians.</div>
+                <div class="summary-value">@Model.Description</div>
             </div>
             <div class="summary-section">
                 <div class="summary-label">Attached File</div>
                 <div class="summary-value flex align-center gap-8">
-                    <img src="~/images/icons/ic_attatched_file.svg" alt="Attatched File Icon" width="32" height="32" />
-                    <span>pothole_main_street.jpg</span>
-                    <span class="summary-file-size">(2.4 MB)</span>
+                    @if (!string.IsNullOrEmpty(Model.AttachmentPath))
+                    {
+                        <img src="~/images/icons/ic_attatched_file.svg" alt="Attached File Icon" width="32" height="32" />
+                        <span>@Model.AttachmentPath</span>
+                    }
+                    else
+                    {
+                        <span>No file attached</span>
+                    }
                 </div>
             </div>
+            <div class="summary-section">
+                <div class="summary-label">Date Reported</div>
+                <div class="summary-value">@Model.DateReported.ToString("g")</div>
+            </div>
+            @if (!string.IsNullOrEmpty(Model.NotificationEmail) || !string.IsNullOrEmpty(Model.NotificationPhone))
+            {
+                <div class="summary-section">
+                    <div class="summary-label">Progress Notifications</div>
+                    <div class="summary-value">
+                        @if (!string.IsNullOrEmpty(Model.NotificationEmail))
+                        {
+                            <div class="notification-item">
+                                <span class="notification-type">📧 Email:</span>
+                                <span class="notification-contact">@Model.NotificationEmail</span>
+                            </div>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.NotificationPhone))
+                        {
+                            <div class="notification-item">
+                                <span class="notification-type">📱 SMS:</span>
+                                <span class="notification-contact">@Model.NotificationPhone</span>
+                            </div>
+                        }
+                        @if (string.IsNullOrEmpty(Model.NotificationEmail) && string.IsNullOrEmpty(Model.NotificationPhone))
+                        {
+                            <span>No notifications requested</span>
+                        }
+                    </div>
+                </div>
+            }
         </div>
         <div class="confirmation-next-steps">
             <div class="next-steps-title">What happens next?</div>

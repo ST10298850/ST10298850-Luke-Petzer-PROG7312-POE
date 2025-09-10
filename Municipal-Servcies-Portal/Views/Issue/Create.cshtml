@@ -23,7 +23,7 @@
             <div class="info-desc">Every report helps make our city a better place to live.</div>
         </div>
     </section>
-    <form class="issue-form rounded-12 shadow-sm bg-white">
+    <form asp-action="Create" asp-controller="Issue" method="post" enctype="multipart/form-data" class="issue-form rounded-12 shadow-sm bg-white">
         <div class="form-header bg-blue-100 flex align-center">
             <div class="form-header-icon">
                 <img src="~/images/icons/ic_issue_details.svg" alt="Issue Details Icon" width="32" height="32" />
@@ -40,7 +40,7 @@
                     <span>Location</span>
                     <span class="form-label-required">*</span>
                 </label>
-                <input type="text" id="location" name="location" class="form-input" placeholder="Enter street address or landmark" />
+                <input type="text" id="location" name="location" class="form-input" required="required" placeholder="Enter street address or landmark" />
                 <div class="form-hint">Please be as specific as possible to help us locate the issue quickly.</div>
             </div>
             <!-- Category -->
@@ -52,7 +52,7 @@
                     <span>Issue Category</span>
                     <span class="form-label-required">*</span>
                 </label>
-                <select id="category" name="category" class="form-select">
+                <select id="category" name="category" class="form-select" required="required">
                     <option value="">Select a category</option>
                     <option value="pothole">Pothole</option>
                     <option value="streetlight">Streetlight</option>
@@ -69,24 +69,60 @@
                     <span>Description</span>
                     <span class="form-label-required">*</span>
                 </label>
-                <textarea id="description" name="description" class="form-textarea" rows="6" placeholder="Provide detailed description of the issue..."></textarea>
+                <textarea id="description" name="description" class="form-textarea" rows="6" required="required" placeholder="Provide detailed description of the issue..."></textarea>
                 <div class="form-hint">Include as much detail as possible to help us understand and resolve the issue.</div>
             </div>
             <!-- Attachments -->
             <div class="form-group">
-                <label class="form-label flex align-center gap-4" for="attachments">
+                <label class="form-label flex align-center gap-4" for="attachment">
                     <span class="form-label-icon">
-                        <img src="~/images/icons/ic_attatchment.svg" alt="Attatchment Icon" width="32" height="32" />
+                        <img src="~/images/icons/ic_attatchment.svg" alt="Attachment Icon" width="32" height="32" />
                     </span>
                     <span>Attach Photos or Documents</span>
                 </label>
-                <div class="upload-area flex-col align-center rounded-8">
+                <div class="upload-area flex-col align-center rounded-8" onclick="document.getElementById('attachment').click()">
                     <div class="upload-icon">
                         <img src="~/images/icons/ic_upload.svg" alt="Upload Icon" width="32" height="32" />
                     </div>
                     <div class="upload-text text-blue">Click to upload or drag and drop</div>
                     <div class="upload-hint text-gray">PNG, JPG, PDF up to 10MB</div>
-                    <input type="file" id="attachments" name="attachments" multiple style="display:none;" />
+                    <input type="file" id="attachment" name="attachment" accept=".png,.jpg,.jpeg,.pdf" style="display:none;" />
+                </div>
+                <div id="file-info" class="file-info" style="display:none;">
+                    <div class="file-item">
+                        <img src="~/images/icons/ic_attatched_file.svg" alt="File Icon" width="16" height="16" />
+                        <span class="file-name"></span>
+                        <span class="file-size"></span>
+                        <button type="button" class="remove-file" onclick="removeFile()">×</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Notifications Section -->
+            <div class="form-group">
+                <div class="form-label flex align-center gap-4">
+                    <span class="form-label-icon">
+                        <img src="~/images/icons/ic_heart(2).svg" alt="Notification Icon" width="32" height="32" />
+                    </span>
+                    <span>Progress Notifications (Optional)</span>
+                </div>
+                <div class="form-hint">Get updates on your report progress. Choose one or both options below.</div>
+                
+                <!-- Email Notification -->
+                <div class="notification-field">
+                    <label class="notification-label" for="notificationEmail">
+                        <input type="checkbox" id="emailCheckbox" class="notification-checkbox" />
+                        <span class="notification-text">Email notifications</span>
+                    </label>
+                    <input type="email" id="notificationEmail" name="notificationEmail" class="form-input notification-input" placeholder="Enter your email address" disabled />
+                </div>
+                
+                <!-- Phone Notification -->
+                <div class="notification-field">
+                    <label class="notification-label" for="notificationPhone">
+                        <input type="checkbox" id="phoneCheckbox" class="notification-checkbox" />
+                        <span class="notification-text">SMS notifications</span>
+                    </label>
+                    <input type="tel" id="notificationPhone" name="notificationPhone" class="form-input notification-input" placeholder="Enter your phone number" disabled />
                 </div>
             </div>
             <!-- Progress Bar -->
