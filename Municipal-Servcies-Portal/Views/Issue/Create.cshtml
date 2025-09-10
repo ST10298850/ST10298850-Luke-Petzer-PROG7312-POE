@@ -86,16 +86,9 @@
                     </div>
                     <div class="upload-text text-blue">Click to upload or drag and drop</div>
                     <div class="upload-hint text-gray">PNG, JPG, PDF up to 10MB</div>
-                    <input type="file" id="attachment" name="attachment" accept=".png,.jpg,.jpeg,.pdf" style="display:none;" />
+                    <input type="file" id="attachment" name="attachments" accept=".png,.jpg,.jpeg,.pdf" multiple style="display:none;" />
                 </div>
-                <div id="file-info" class="file-info" style="display:none;">
-                    <div class="file-item">
-                        <img src="~/images/icons/ic_attatched_file.svg" alt="File Icon" width="16" height="16" />
-                        <span class="file-name"></span>
-                        <span class="file-size"></span>
-                        <button type="button" class="remove-file" onclick="removeFile()">×</button>
-                    </div>
-                </div>
+                <div id="file-info" class="file-info" style="display:none;"></div>
             </div>
             <!-- Notifications Section -->
             <div class="form-group">
@@ -137,12 +130,12 @@
             </div>
         </div>
         <div class="form-actions flex justify-between">
-            <button type="button" class="btn-back-absolute">
+            <a href="/" class="btn-back-absolute">
                 <span class="icon-container">
                     <img src="~/images/icons/ic_back_arrow_dark.svg" alt="Back Arrow Icon" width="14" height="16" />
                 </span>
                 <span class="text-content">Back to Main Menu</span>
-            </button>
+            </a>
             <button type="submit" class="btn-submit-primary">
                 <span class="icon-container">
                     <img src="~/images/icons/ic_submit.svg" alt="Submit Icon" width="16" height="16" />

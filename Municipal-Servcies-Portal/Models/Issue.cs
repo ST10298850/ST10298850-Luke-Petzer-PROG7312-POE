@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Municipal_Servcies_Portal.Models
 {
     public class Issue
@@ -5,7 +7,7 @@ namespace Municipal_Servcies_Portal.Models
         public string Location { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public string? AttachmentPath { get; set; }
+        public List<string>? AttachmentPaths { get; set; } = new List<string>();
         public DateTime DateReported { get; set; } = DateTime.Now;
         
         // Notification preferences

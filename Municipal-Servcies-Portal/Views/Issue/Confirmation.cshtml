@@ -25,7 +25,7 @@
             <div class="summary-section">
                 <div class="summary-label">Category</div>
                 <div class="summary-value flex align-center gap-8">
-                    <img src="~/images/icons/ic_road.svg" alt="Category Icon" width="32" height="32" />
+
                     <span>@Model.Category</span>
                 </div>
             </div>
@@ -34,12 +34,17 @@
                 <div class="summary-value">@Model.Description</div>
             </div>
             <div class="summary-section">
-                <div class="summary-label">Attached File</div>
+                <div class="summary-label">Attached File(s)</div>
                 <div class="summary-value flex align-center gap-8">
-                    @if (!string.IsNullOrEmpty(Model.AttachmentPath))
+                    @if (Model.AttachmentPaths != null && Model.AttachmentPaths.Count > 0)
                     {
-                        <img src="~/images/icons/ic_attatched_file.svg" alt="Attached File Icon" width="32" height="32" />
-                        <span>@Model.AttachmentPath</span>
+                        foreach (var file in Model.AttachmentPaths)
+                        {
+                            <div class="attached-file flex align-center gap-4">
+                                <img src="~/images/icons/ic_attatched_file.svg" alt="Attached File Icon" width="32" height="32" />
+                                <span>@file</span>
+                            </div>
+                        }
                     }
                     else
                     {

@@ -74,36 +74,50 @@ function initializeIssueForm() {
         phoneInput.addEventListener('input', debounce(updateProgress, 300));
     }
 
+    // Store selected files in a Set for easy add/remove
+    let selectedFiles = new Map();
+
     // Enhanced progress tracking including notifications
     function updateProgress() {
         let completedFields = 0;
-        let totalRequiredFields = 3; // location, category, description are required
-        let totalFields = 4; // including optional attachment
-        let bonusFields = 0; // notification fields add bonus progress
-        
+        let totalFields = 3; // location, category, description are always required
+
         // Check required fields
         if (formFields.location.value.trim() !== '') completedFields++;
         if (formFields.category.value !== '') completedFields++;
         if (formFields.description.value.trim() !== '') completedFields++;
-        
-        // Check optional attachment
-        let hasAttachment = formFields.attachment.files.length > 0;
-        if (hasAttachment) completedFields++;
-        
-        // Check notification preferences (bonus progress)
-        if (emailCheckbox.checked && emailInput.value.trim() !== '') bonusFields++;
-        if (phoneCheckbox.checked && phoneInput.value.trim() !== '') bonusFields++;
-        
-        // Calculate progress percentage (notifications add 10% bonus each)
-        let baseProgress = Math.round((completedFields / totalFields) * 85); // Max 85% for main fields
-        let bonusProgress = bonusFields * 7.5; // 7.5% per notification method
-        let progressPercent = Math.min(100, baseProgress + bonusProgress);
-        
+
+        // Optional attachment (count as complete if any file is present)
+        let hasAttachment = selectedFiles.size > 0;
+        if (hasAttachment) {
+            completedFields++;
+            totalFields++;
+        }
+
+        // Optional notification fields (only count if enabled)
+        let notificationFields = 0;
+        let completedNotifications = 0;
+        if (emailCheckbox.checked) {
+            notificationFields++;
+            totalFields++;
+            if (emailInput.value.trim() !== '') completedNotifications++;
+        }
+        if (phoneCheckbox.checked) {
+            notificationFields++;
+            totalFields++;
+            if (phoneInput.value.trim() !== '') completedNotifications++;
+        }
+        completedFields += completedNotifications;
+
+        // Calculate progress percentage
+        let progressPercent = Math.round((completedFields / totalFields) * 100);
+        progressPercent = Math.min(100, progressPercent);
+
         // Update progress bar with animation
         animateProgressBar(progressPercent);
-        
+
         // Update progress label based on completion
-        updateProgressLabel(completedFields, totalRequiredFields, hasAttachment, bonusFields);
+        updateProgressLabel(completedFields, totalFields, progressPercent);
     }
 
     function animateProgressBar(targetPercent) {
@@ -145,17 +159,13 @@ function initializeIssueForm() {
         }
     }
 
-    function updateProgressLabel(completed, required, hasAttachment, bonusFields) {
-        if (completed >= 4 && bonusFields >= 1) {
-            progressLabel.innerHTML = 'Excellent! All fields complete <span style="color: #10B981;">✓</span>';
-        } else if (completed >= 4) {
+    function updateProgressLabel(completed, total, percent) {
+        if (percent === 100) {
             progressLabel.innerHTML = 'Form Complete! <span style="color: #10B981;">✓</span>';
-        } else if (completed >= required && bonusFields >= 1) {
-            progressLabel.innerHTML = 'Great! Consider adding notifications <span style="color: #F59E0B;">+</span>';
-        } else if (completed >= required) {
+        } else if (completed >= 3) {
             progressLabel.innerHTML = 'Required Fields Complete <span style="color: #F59E0B;">+</span>';
         } else {
-            const remaining = required - completed;
+            const remaining = 3 - completed;
             progressLabel.textContent = `${remaining} Required Field${remaining !== 1 ? 's' : ''} Remaining`;
         }
     }
@@ -167,13 +177,7 @@ function initializeIssueForm() {
 
     // File upload functionality with progress tracking
     fileInput.addEventListener('change', function(e) {
-        if (e.target.files.length > 0) {
-            const file = e.target.files[0];
-            if (validateFile(file)) {
-                displayFileInfo(file);
-                updateProgress(); // Update progress when file is added
-            }
-        }
+        handleFiles(e.target.files);
     });
 
     // Handle drag and drop
@@ -190,24 +194,61 @@ function initializeIssueForm() {
     uploadArea.addEventListener('drop', function(e) {
         e.preventDefault();
         uploadArea.classList.remove('drag-over');
-        
-        const files = e.dataTransfer.files;
-        if (files.length > 0) {
-            const file = files[0];
-            if (validateFile(file)) {
-                fileInput.files = files;
-                displayFileInfo(file);
-                updateProgress(); // Update progress when file is dropped
-            }
-        }
+        handleFiles(e.dataTransfer.files);
     });
 
-    function displayFileInfo(file) {
-        fileName.textContent = file.name;
-        fileSize.textContent = formatFileSize(file.size);
-        fileInfo.style.display = 'block';
-        uploadArea.style.display = 'none';
+    function handleFiles(fileList) {
+        let added = false;
+        for (let file of fileList) {
+            if (validateFile(file) && !selectedFiles.has(file.name)) {
+                selectedFiles.set(file.name, file);
+                added = true;
+            }
+        }
+        if (added) {
+            displayFileList();
+            updateProgress();
+        }
     }
+
+    function displayFileList() {
+        fileInfo.innerHTML = '';
+        if (selectedFiles.size === 0) {
+            fileInfo.style.display = 'none';
+            return;
+        }
+        fileInfo.style.display = 'block';
+        selectedFiles.forEach((file, name) => {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            fileItem.innerHTML = `
+                <img src=\"~/images/icons/ic_attatched_file.svg\" alt=\"File Icon\" width=\"16\" height=\"16\" />
+                <span class=\"file-name\">${file.name}</span>
+                <span class=\"file-size\">${formatFileSize(file.size)}</span>
+                <button type=\"button\" class=\"remove-file\" data-filename=\"${file.name}\">×</button>
+            `;
+            fileInfo.appendChild(fileItem);
+        });
+        // Add remove event listeners
+        fileInfo.querySelectorAll('.remove-file').forEach(btn => {
+            btn.addEventListener('click', function() {
+                selectedFiles.delete(this.getAttribute('data-filename'));
+                displayFileList();
+                updateProgress();
+            });
+        });
+    }
+
+    // Override form submit to append all files in FormData
+    const form = document.querySelector('.issue-form');
+    form.addEventListener('submit', function(e) {
+        if (selectedFiles.size > 0) {
+            // Replace file input files with selectedFiles
+            const dataTransfer = new DataTransfer();
+            selectedFiles.forEach(file => dataTransfer.items.add(file));
+            fileInput.files = dataTransfer.files;
+        }
+    });
 
     function formatFileSize(bytes) {
         if (bytes === 0) return '0 Bytes';
@@ -232,14 +273,6 @@ function initializeIssueForm() {
         }
         
         return true;
-    }
-
-    // Global function to remove file
-    window.removeFile = function() {
-        fileInput.value = '';
-        fileInfo.style.display = 'none';
-        uploadArea.style.display = 'flex';
-        updateProgress(); // Update progress when file is removed
     }
 
     // Debounce function to prevent too many progress updates
