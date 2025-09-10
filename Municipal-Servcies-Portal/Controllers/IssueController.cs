@@ -1,3 +1,5 @@
+// IssueController.cs
+// Handles issue creation, file uploads, and confirmation display.
 using Microsoft.AspNetCore.Mvc;
 using Municipal_Servcies_Portal.Models;
 using Municipal_Servcies_Portal.Services;
@@ -7,23 +9,38 @@ namespace Municipal_Servcies_Portal.Controllers;
 
 public class IssueController : Controller
 {
+    // Service for managing issues.
     private readonly IssueService _service;
+    // Provides access to web root for file uploads.
     private readonly IWebHostEnvironment _env;
 
+    /// <summary>
+    /// Constructor for dependency injection of IssueService and environment.
+    /// </summary>
     public IssueController(IssueService service, IWebHostEnvironment env)
     {
         _service = service;
         _env = env;
     }
 
-    // GET: /Issue/Create
+    /// <summary>
+    /// Displays the issue creation form.
+    /// </summary>
     [HttpGet]
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: /Issue/Create
+    /// <summary>
+    /// Handles form submission, file uploads, and redirects to confirmation.
+    /// </summary>
+    /// <param name="location">Location of the issue.</param>
+    /// <param name="category">Category of the issue.</param>
+    /// <param name="description">Description of the issue.</param>
+    /// <param name="attachments">Uploaded files.</param>
+    /// <param name="notificationEmail">Optional notification email.</param>
+    /// <param name="notificationPhone">Optional notification phone.</param>
     [HttpPost]
     public IActionResult Create(string location, string category, string description, IFormFile[]? attachments, string? notificationEmail, string? notificationPhone)
     {
@@ -54,6 +71,7 @@ public class IssueController : Controller
             NotificationPhone = string.IsNullOrWhiteSpace(notificationPhone) ? null : notificationPhone
         };
         _service.AddIssue(issue);
+        // Store issue data in TempData for confirmation page.
         TempData["IssueLocation"] = issue.Location;
         TempData["IssueCategory"] = issue.Category;
         TempData["IssueDescription"] = issue.Description;
@@ -64,6 +82,9 @@ public class IssueController : Controller
         return RedirectToAction("Confirmation");
     }
 
+    /// <summary>
+    /// Displays the confirmation page with submitted issue details.
+    /// </summary>
     public IActionResult Confirmation()
     {
         var attachmentsJson = TempData["IssueAttachments"]?.ToString();

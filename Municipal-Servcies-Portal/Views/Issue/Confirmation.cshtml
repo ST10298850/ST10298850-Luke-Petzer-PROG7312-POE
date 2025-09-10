@@ -1,11 +1,14 @@
 @model Municipal_Servcies_Portal.Models.Issue
 @{
+    // Set the page title for the confirmation page
     ViewData["Title"] = "Confirmation Page";
 }
 <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
 <main class="confirmation-container">
+    <!-- Confirmation card with success message and summary -->
     <section class="confirmation-card">
         <div class="confirmation-header">
+            <!-- Success icon -->
             <div class="confirmation-success-icon">
                 <img src="~/images/icons/ic_sucess_tick.svg" alt="Success Tick Icon" width="32" height="32" />
             </div>
@@ -14,25 +17,29 @@
         </div>
         <div class="confirmation-summary">
             <div class="summary-title">Report Summary</div>
+            <!-- Reference number (randomized for display) -->
             <div class="summary-section summary-ref bg-blue-100">
                 <div class="summary-label">Reference Number</div>
                 <div class="summary-value">#MSP-@DateTime.Now.ToString("yyyy")-@(new Random().Next(100000, 999999))</div>
             </div>
+            <!-- Location -->
             <div class="summary-section">
                 <div class="summary-label">Location</div>
                 <div class="summary-value">@Model.Location</div>
             </div>
+            <!-- Category -->
             <div class="summary-section">
                 <div class="summary-label">Category</div>
                 <div class="summary-value flex align-center gap-8">
-
                     <span>@Model.Category</span>
                 </div>
             </div>
+            <!-- Description -->
             <div class="summary-section">
                 <div class="summary-label">Description</div>
                 <div class="summary-value">@Model.Description</div>
             </div>
+            <!-- Attached files -->
             <div class="summary-section">
                 <div class="summary-label">Attached File(s)</div>
                 <div class="summary-value flex align-center gap-8">
@@ -52,10 +59,12 @@
                     }
                 </div>
             </div>
+            <!-- Date reported -->
             <div class="summary-section">
                 <div class="summary-label">Date Reported</div>
                 <div class="summary-value">@Model.DateReported.ToString("g")</div>
             </div>
+            <!-- Progress notifications (if provided) -->
             @if (!string.IsNullOrEmpty(Model.NotificationEmail) || !string.IsNullOrEmpty(Model.NotificationPhone))
             {
                 <div class="summary-section">
@@ -83,6 +92,7 @@
                 </div>
             }
         </div>
+        <!-- Next steps for the user -->
         <div class="confirmation-next-steps">
             <div class="next-steps-title">What happens next?</div>
             <div class="next-steps-list">
@@ -100,6 +110,7 @@
                 </div>
             </div>
         </div>
+        <!-- Action buttons for user navigation -->
         <div class="confirmation-actions flex gap-16">
             <a href="/Issue/Create" class="confirmation-btn primary flex align-center">
                 <img src="~/images/icons/ic_plus.svg" alt="Plus Icon" width="32" height="32" />

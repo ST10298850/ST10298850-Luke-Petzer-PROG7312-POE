@@ -1,7 +1,9 @@
 @{
+    // Set the page title for the browser tab
     ViewData["Title"] = "Create Page";
 }
 <main class="main">
+    <!-- Header section with breadcrumbs and page title -->
     <section class="section header">
         <nav class="breadcrumb flex gap-8" aria-label="Breadcrumb">
             <a href="/" class="breadcrumb-link">Home</a>
@@ -14,6 +16,7 @@
         <h1 class="page-title">Report an Issue</h1>
         <p class="page-desc">Help us improve your community by reporting issues in your area.</p>
     </section>
+    <!-- Info banner for user encouragement -->
     <section class="info-banner shadow-md flex align-center">
         <div class="info-icon">
             <img src="~/images/icons/ic_heart(2).svg" alt="Heart Icon" width="32" height="32" />
@@ -23,7 +26,9 @@
             <div class="info-desc">Every report helps make our city a better place to live.</div>
         </div>
     </section>
+    <!-- Main issue reporting form -->
     <form asp-action="Create" asp-controller="Issue" method="post" enctype="multipart/form-data" class="issue-form rounded-12 shadow-sm bg-white">
+        <!-- Form header with icon -->
         <div class="form-header bg-blue-100 flex align-center">
             <div class="form-header-icon">
                 <img src="~/images/icons/ic_issue_details.svg" alt="Issue Details Icon" width="32" height="32" />
@@ -31,7 +36,7 @@
             <h3 class="form-header-title">Issue Details</h3>
         </div>
         <div class="form-body">
-            <!-- Location -->
+            <!-- Location input field -->
             <div class="form-group">
                 <label class="form-label flex align-center gap-4" for="location">
                     <span class="form-label-icon">
@@ -43,7 +48,7 @@
                 <input type="text" id="location" name="location" class="form-input" required="required" placeholder="Enter street address or landmark" />
                 <div class="form-hint">Please be as specific as possible to help us locate the issue quickly.</div>
             </div>
-            <!-- Category -->
+            <!-- Category dropdown -->
             <div class="form-group">
                 <label class="form-label flex align-center gap-4" for="category">
                     <span class="form-label-icon">
@@ -60,7 +65,7 @@
                     <option value="other">Other</option>
                 </select>
             </div>
-            <!-- Description -->
+            <!-- Description textarea -->
             <div class="form-group">
                 <label class="form-label flex align-center gap-4" for="description">
                     <span class="form-label-icon">
@@ -72,7 +77,7 @@
                 <textarea id="description" name="description" class="form-textarea" rows="6" required="required" placeholder="Provide detailed description of the issue..."></textarea>
                 <div class="form-hint">Include as much detail as possible to help us understand and resolve the issue.</div>
             </div>
-            <!-- Attachments -->
+            <!-- Attachments upload area -->
             <div class="form-group">
                 <label class="form-label flex align-center gap-4" for="attachment">
                     <span class="form-label-icon">
@@ -90,7 +95,7 @@
                 </div>
                 <div id="file-info" class="file-info" style="display:none;"></div>
             </div>
-            <!-- Notifications Section -->
+            <!-- Optional notifications section -->
             <div class="form-group">
                 <div class="form-label flex align-center gap-4">
                     <span class="form-label-icon">
@@ -99,7 +104,6 @@
                     <span>Progress Notifications (Optional)</span>
                 </div>
                 <div class="form-hint">Get updates on your report progress. Choose one or both options below.</div>
-                
                 <!-- Email Notification -->
                 <div class="notification-field">
                     <label class="notification-label" for="notificationEmail">
@@ -108,7 +112,6 @@
                     </label>
                     <input type="email" id="notificationEmail" name="notificationEmail" class="form-input notification-input" placeholder="Enter your email address" disabled />
                 </div>
-                
                 <!-- Phone Notification -->
                 <div class="notification-field">
                     <label class="notification-label" for="notificationPhone">
@@ -118,7 +121,7 @@
                     <input type="tel" id="notificationPhone" name="notificationPhone" class="form-input notification-input" placeholder="Enter your phone number" disabled />
                 </div>
             </div>
-            <!-- Progress Bar -->
+            <!-- Progress bar for form completion -->
             <div class="form-progress rounded-8 bg-gray-100">
                 <div class="form-progress-header flex justify-between">
                     <span class="form-progress-label">Form Completion</span>
@@ -129,6 +132,7 @@
                 </div>
             </div>
         </div>
+        <!-- Form action buttons -->
         <div class="form-actions flex justify-between">
             <a href="/" class="btn-back-absolute">
                 <span class="icon-container">
