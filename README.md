@@ -2,11 +2,11 @@
 
 A web application for reporting municipal issues, tracking service requests, and staying connected with your community. Built with ASP.NET Core MVC.
 
-##Link to Repository
+## Link to Repository
 
 https://github.com/ST10298850/ST10298850-Luke-Petzer-PROG7312-POE.git
 
-##Link to YouTube Video
+## Link to YouTube Video
 
 https://youtu.be/6EByHpbRAZs
 
@@ -128,6 +128,7 @@ This project is for educational purposes. All icons and images are for demonstra
 **Developed by:** Luke Petzer | ST10298850
 
 **Assignment:** Municipal Services Portal
+
 
 
 
