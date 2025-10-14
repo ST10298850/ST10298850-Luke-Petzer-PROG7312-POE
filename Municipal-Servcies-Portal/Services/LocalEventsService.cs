@@ -103,7 +103,6 @@ namespace Municipal_Servcies_Portal.Services
         }
 
         // Search and filter functionality
-
         
         /// <summary>
         /// Searches for events based on multiple filter criteria
