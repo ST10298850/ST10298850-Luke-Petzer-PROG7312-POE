@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AgentMigrationStateService">
+    <option name="pendingSessionIds">
+      <option value="07a6fb32-30a0-411b-8599-6d2d7f061d58" />
+    </option>
+    <option name="pendingTurns">
+      <map>
+        <entry key="07a6fb32-30a0-411b-8599-6d2d7f061d58">
+          <value>
+            <set>
+              <option value="416696e4-09fa-4b62-b7b0-83d7de15badf" />
+              <option value="18bc1029-1cb7-44fb-b956-977fc49b9ed6" />
+              <option value="f8eaca22-ad71-4195-8ee1-e35dddbcc57c" />
+              <option value="2f6d7cf5-9f04-429b-a47f-bfc1c14d8a57" />
+            </set>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <pendingWorkingSetItems>
+      <entry key="07a6fb32-30a0-411b-8599-6d2d7f061d58">
+        <set>
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/Views/LocalEvents/Index.cshtml" />
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/wwwroot/css/localevents.css" />
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/Views/Shared/_Layout.cshtml" />
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/Data/ApplicationDbContext.cs" />
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/Models/Events.cs" />
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/appsettings.json" />
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/Program.cs" />
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/Municipal-Servcies-Portal.csproj" />
+        </set>
+      </entry>
+    </pendingWorkingSetItems>
+  </component>
+</project>
