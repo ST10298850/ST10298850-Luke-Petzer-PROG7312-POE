@@ -13,6 +13,15 @@
               <option value="18bc1029-1cb7-44fb-b956-977fc49b9ed6" />
               <option value="f8eaca22-ad71-4195-8ee1-e35dddbcc57c" />
               <option value="2f6d7cf5-9f04-429b-a47f-bfc1c14d8a57" />
+              <option value="70afdbc8-8957-4412-bef0-2d90ffbb1a9c" />
+              <option value="99939f91-03e8-4243-9d75-d5d27c6fe2b5" />
+              <option value="baf71ea2-4aa4-4b4c-8a3d-c3908831881c" />
+              <option value="32621428-6e12-461a-923c-68659018f81d" />
+              <option value="e67c16ec-2af8-4d85-80a0-a0381f4963d1" />
+              <option value="09eb0842-e0b9-421d-aab4-bef212a8e148" />
+              <option value="5d198f74-ec22-4426-a580-b27d1eafe3b6" />
+              <option value="a06ff890-1245-4285-855e-e6dd4e067267" />
+              <option value="fbc1d34a-c13d-463d-8fef-9c9c1db29aad" />
             </set>
           </value>
         </entry>
@@ -29,6 +38,12 @@
           <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/appsettings.json" />
           <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/Program.cs" />
           <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/Municipal-Servcies-Portal.csproj" />
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/Services/ILocalEventsService.cs" />
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/Services/LocalEventsService.cs" />
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/ViewModels/LocalEventsViewModel.cs" />
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/Controllers/LocalEventsController.cs" />
+          <option value="file://$PROJECT_DIR$/Municipal-Servcies-Portal/Data/DbSeeder.cs" />
+          <option value="file://$PROJECT_DIR$/IMPLEMENTATION_SUMMARY.md" />
         </set>
       </entry>
     </pendingWorkingSetItems>

@@ -5,46 +5,62 @@
 
 <div class="events-container">
     <!-- Search/Filter Section -->
-    <section class="filter-card">
-        <div class="filter-row">
-            <div class="filter-field filter-field-search">
-                <label for="searchEvents" class="filter-label">Search Events</label>
-                <div class="filter-input-wrapper">
-                    <i class="filter-icon">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M14 14L11.1 11.1" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </i>
-                    <input type="text" id="searchEvents" class="filter-input" placeholder="Search by event name or keyword..." />
+    <!-- This form uses GET method to submit search parameters via query string -->
+    <!-- asp-controller and asp-action specify where the form data is sent -->
+    <form method="get" asp-controller="LocalEvents" asp-action="Index">
+        <section class="filter-card">
+            <div class="filter-row">
+                <div class="filter-field filter-field-search">
+                    <label for="searchName" class="filter-label">Search Events</label>
+                    <div class="filter-input-wrapper">
+                        <i class="filter-icon">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 14L11.1 11.1" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </i>
+                        <!-- name="searchName" matches the controller parameter name -->
+                        <!-- value="@Context.Request.Query["searchName"]" preserves the search value after form submission -->
+                        <input type="text" id="searchName" name="searchName" class="filter-input" 
+                               placeholder="Search by event name or keyword..." 
+                               value="@Context.Request.Query["searchName"]" />
+                    </div>
+                </div>
+                
+                <div class="filter-field filter-field-category">
+                    <label for="category" class="filter-label">Category</label>
+                    <!-- name="category" matches the controller parameter name -->
+                    <select id="category" name="category" class="filter-select">
+                        <option value="">All Categories</option>
+                        @if (Model.Categories != null && Model.Categories.Any())
+                        {
+                            @foreach (var cat in Model.Categories)
+                            {
+                                <!-- selected="@(Context.Request.Query["category"] == cat ? "selected" : null)" -->
+                                <!-- This keeps the selected category highlighted after form submission -->
+                                <option value="@cat" selected="@(Context.Request.Query["category"] == cat ? "selected" : null)">@cat</option>
+                            }
+                        }
+                    </select>
+                </div>
+                
+                <div class="filter-field filter-field-date">
+                    <label for="date" class="filter-label">Date</label>
+                    <!-- name="date" matches the controller parameter name -->
+                    <!-- type="date" provides a date picker in modern browsers -->
+                    <input type="date" id="date" name="date" class="filter-input filter-date-input" 
+                           value="@Context.Request.Query["date"]" />
                 </div>
             </div>
             
-            <div class="filter-field filter-field-category">
-                <label for="categorySelect" class="filter-label">Category</label>
-                <select id="categorySelect" class="filter-select">
-                    <option value="">All Categories</option>
-                    @if (Model.Categories != null && Model.Categories.Any())
-                    {
-                        @foreach (var category in Model.Categories)
-                        {
-                            <option value="@category">@category</option>
-                        }
-                    }
-                </select>
+            <div class="filter-actions">
+                <!-- Clear button reloads the page without any query parameters -->
+                <button type="button" class="filter-button filter-button-clear" onclick="window.location.href='@Url.Action("Index", "LocalEvents")'">Clear Filters</button>
+                <!-- Submit button triggers the form submission with all filter values -->
+                <button type="submit" class="filter-button filter-button-primary">Search Events</button>
             </div>
-            
-            <div class="filter-field filter-field-date">
-                <label for="dateRange" class="filter-label">Date Range</label>
-                <input type="date" id="dateRange" class="filter-input filter-date-input" />
-            </div>
-        </div>
-        
-        <div class="filter-actions">
-            <button type="button" class="filter-button filter-button-clear">Clear Filters</button>
-            <button type="button" class="filter-button filter-button-primary">Search Events</button>
-        </div>
-    </section>
+        </section>
+    </form>
 
     <!-- Two Column Layout: Events & Announcements -->
     <div class="content-layout">

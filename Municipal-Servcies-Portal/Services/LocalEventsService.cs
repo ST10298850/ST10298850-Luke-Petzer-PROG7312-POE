@@ -103,26 +103,62 @@ namespace Municipal_Servcies_Portal.Services
         }
 
         // Search and filter functionality
-        public async Task<IEnumerable<Event>> SearchEventsAsync(string? query, string? category, DateTime? startDate, DateTime? endDate)
+
+        
+        /// <summary>
+        /// Searches for events based on multiple filter criteria
+        /// This method queries the database and applies filters sequentially
+        /// NOTE: EF Core requires case-insensitive search to use EF.Functions.Like() instead of Contains with OrdinalIgnoreCase
+        /// </summary>
+        /// <param name="name">Event name/title to search for (partial match, case-insensitive)</param>
+        /// <param name="category">Exact category match (case-insensitive)</param>
+        /// <param name="startDate">Filter events starting on or after this date</param>
+        /// <param name="endDate">Filter events starting on or before this date</param>
+        /// <returns>List of events matching all provided criteria</returns>
+        public async Task<IEnumerable<Event>> SearchEventsAsync(string? name, string? category, DateTime? startDate, DateTime? endDate)
         {
-            var events = _context.Events.AsQueryable();
+            // Start with a queryable collection from the database
+            // AsQueryable() allows us to build the query before executing it
+            var query = _context.Events.AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(query))
-                events = events.Where(e => e.Title.Contains(query) || e.Description.Contains(query));
+            // Apply name filter if provided
+            // Use EF.Functions.Like() for case-insensitive search that translates to SQL
+            // The % wildcard means "match any characters before or after"
+            if (!string.IsNullOrEmpty(name))
+            {
+                // Convert to lowercase for case-insensitive search that works with SQL
+                query = query.Where(e => e.Title.ToLower().Contains(name.ToLower()));
+            }
 
-            if (!string.IsNullOrWhiteSpace(category))
-                events = events.Where(e => e.Category == category);
+            // Apply category filter if provided
+            // Use ToLower() for case-insensitive comparison that EF Core can translate
+            if (!string.IsNullOrEmpty(category))
+            {
+                query = query.Where(e => e.Category.ToLower() == category.ToLower());
+            }
 
+            // Apply start date filter if provided
+            // This filters events that start on or after the specified date
             if (startDate.HasValue)
-                events = events.Where(e => e.StartDate >= startDate.Value);
+            {
+                query = query.Where(e => e.StartDate >= startDate.Value);
+            }
 
+            // Apply end date filter if provided
+            // This filters events that start on or before the specified date
             if (endDate.HasValue)
-                events = events.Where(e => e.EndDate <= endDate.Value || (!e.EndDate.HasValue && e.StartDate <= endDate.Value));
+            {
+                query = query.Where(e => e.StartDate <= endDate.Value);
+            }
 
-            events = events.Where(e => e.IsActive);
+            // Only show active events
+            query = query.Where(e => e.IsActive);
 
-            return await events.OrderBy(e => e.StartDate).ToListAsync();
+            // Execute the query and return the results as a list
+            // ToListAsync() actually runs the database query
+            return await query.OrderBy(e => e.StartDate).ToListAsync();
         }
+
 
         public async Task RecordSearchAsync(string query, string? category, DateTime? startDate, DateTime? endDate)
         {

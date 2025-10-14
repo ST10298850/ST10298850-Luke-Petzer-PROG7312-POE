@@ -13,7 +13,7 @@ namespace Municipal_Servcies_Portal.Services
         Task<IEnumerable<Event>> GetEventsByCategoryAsync(string category);
         Task<IEnumerable<string>> GetCategoriesAsync();
         
-        // Search and filter
+        // Search and filter - Updated to return Task for async operation
         Task<IEnumerable<Event>> SearchEventsAsync(string? query, string? category, DateTime? startDate, DateTime? endDate);
         Task RecordSearchAsync(string query, string? category, DateTime? startDate, DateTime? endDate);
     }
