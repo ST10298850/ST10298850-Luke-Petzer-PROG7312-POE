@@ -2,8 +2,43 @@
     ViewData["Title"] = "Local Events";
 }
 
-<!DOCTYPE html>
-
-<main>
-    <p>Check 1</p>
-</main>
+<div class="events-container">
+    <section class="filter-card">
+        <div class="filter-row">
+            <div class="filter-field filter-field-search">
+                <label for="searchEvents" class="filter-label">Search Events</label>
+                <div class="filter-input-wrapper">
+                    <i class="filter-icon">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 14L11.1 11.1" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </i>
+                    <input type="text" id="searchEvents" class="filter-input" placeholder="Search by event name or keyword..." />
+                </div>
+            </div>
+            
+            <div class="filter-field filter-field-category">
+                <label for="categorySelect" class="filter-label">Category</label>
+                <select id="categorySelect" class="filter-select">
+                    <option value="">All Categories</option>
+                    <option value="community">Community Events</option>
+                    <option value="government">Government Meetings</option>
+                    <option value="parks">Parks & Recreation</option>
+                    <option value="public-safety">Public Safety</option>
+                    <option value="cultural">Cultural Events</option>
+                </select>
+            </div>
+            
+            <div class="filter-field filter-field-date">
+                <label for="dateRange" class="filter-label">Date Range</label>
+                <input type="text" id="dateRange" class="filter-input filter-date-input" placeholder="mm/dd/yyyy" />
+            </div>
+        </div>
+        
+        <div class="filter-actions">
+            <button type="button" class="filter-button filter-button-clear">Clear Filters</button>
+            <button type="button" class="filter-button filter-button-primary">Search Events</button>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,248 @@
+/* Local Events Page Styles */
+
+.events-container {
+    max-width: 1232px;
+    margin: 32px auto;
+    padding: 0 24px;
+}
+
+/* Filter Card */
+.filter-card {
+    background: #FFFFFF;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+/* Filter Row - First row with inputs */
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* Filter Field - Individual input containers */
+.filter-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-field-search {
+    flex: 1;
+    min-width: 280px;
+}
+
+.filter-field-category,
+.filter-field-date {
+    flex: 0 0 284px;
+    min-width: 200px;
+}
+
+/* Filter Labels */
+.filter-label {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #374151;
+}
+
+/* Input Wrapper for search with icon */
+.filter-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Filter Icon */
+.filter-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.filter-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Filter Input */
+.filter-input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    padding: 12px 16px 12px 40px;
+    background: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.filter-input::placeholder {
+    color: #ADAEBC;
+}
+
+.filter-input:focus {
+    outline: none;
+    border-color: #1E40AF;
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+}
+
+/* Date Input specific */
+.filter-date-input {
+    padding: 12px 16px;
+}
+
+/* Filter Select */
+.filter-select {
+    box-sizing: border-box;
+    width: 100%;
+    height: 48px;
+    padding: 12px 40px 12px 12px;
+    background: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    cursor: pointer;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #1E40AF;
+    box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+}
+
+/* Filter Actions - Button container */
+.filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+/* Filter Buttons */
+.filter-button {
+    box-sizing: border-box;
+    height: 42px;
+    padding: 11px 24px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+/* Clear Filters Button */
+.filter-button-clear {
+    background: #FFFFFF;
+    border: 1px solid #D1D5DB;
+    color: #374151;
+}
+
+.filter-button-clear:hover {
+    background: #F9FAFB;
+    border-color: #9CA3AF;
+}
+
+.filter-button-clear:active {
+    background: #F3F4F6;
+}
+
+/* Search Events Button */
+.filter-button-primary {
+    background: #1E40AF;
+    color: #FFFFFF;
+    min-width: 156px;
+}
+
+.filter-button-primary:hover {
+    background: #1E3A8A;
+}
+
+.filter-button-primary:active {
+    background: #1E40AF;
+    transform: translateY(1px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .filter-field-category,
+    .filter-field-date {
+        flex: 1;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .events-container {
+        margin: 24px auto;
+        padding: 0 16px;
+    }
+    
+    .filter-card {
+        padding: 16px;
+    }
+    
+    .filter-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .filter-field-search,
+    .filter-field-category,
+    .filter-field-date {
+        flex: 1;
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    .filter-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .filter-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .events-container {
+        margin: 16px auto;
+    }
+    
+    .filter-input,
+    .filter-select {
+        font-size: 14px;
+    }
+    
+    .filter-button {
+        font-size: 14px;
+    }
+}
+
