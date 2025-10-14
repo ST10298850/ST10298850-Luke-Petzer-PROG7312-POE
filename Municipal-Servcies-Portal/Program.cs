@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Municipal_Servcies_Portal.Data;
+using Municipal_Servcies_Portal.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,18 @@ builder.Services.AddSingleton<Municipal_Servcies_Portal.Services.IssueService>()
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MunicipalDB")));
 
+// Register LocalEventsService (Phase 2)
+builder.Services.AddScoped<ILocalEventsService, LocalEventsService>();
+
 var app = builder.Build();
+
+// Seed the database (Phase 1)
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<AppDbContext>();
+    await DbSeeder.SeedAsync(context);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
