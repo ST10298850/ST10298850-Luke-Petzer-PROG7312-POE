@@ -12,7 +12,7 @@ https://youtu.be/6EByHpbRAZs
 
 ## Features
 
-### 🔧 Report Issues
+### Report Issues
 - Submit municipal issues (potholes, streetlights, graffiti, etc.) with location, category, and description
 - Attach multiple files (images, PDFs) to reports
 - **Database persistence** - all issues stored in SQL Server
@@ -21,7 +21,7 @@ https://youtu.be/6EByHpbRAZs
 - Status tracking (Pending, InProgress, Resolved, Closed)
 - Confirmation page with detailed report summary
 
-### 📅 Local Events and Announcements
+### Local Events and Announcements
 - **Advanced search and filtering** by event name, category, and date
 - **Intelligent recommendation system** based on user search patterns
 - **Auto-submit filters** with debounced search (700ms delay - no button clicks needed)
@@ -31,7 +31,7 @@ https://youtu.be/6EByHpbRAZs
 - **8 event categories**: Government Meetings, Community Events, Public Safety, Parks & Recreation, Cultural Events, Educational Events, Health & Wellness, Holiday Events
 - **Bootstrap Icons** integration for clean, professional UI elements
 
-### 🎯 Recommendation Engine
+### Recommendation Engine
 - **Multi-strategy recommendation algorithm**:
   1. Category-based recommendations (most frequently searched category)
   2. Keyword-based recommendations (matching search terms in title/description)
@@ -41,7 +41,7 @@ https://youtu.be/6EByHpbRAZs
 - Displays top 3 personalized recommendations
 - Session storage with 2-hour timeout
 
-### 🎨 Modern UI/UX
+### Modern UI/UX
 - Responsive design with custom CSS styling
 - **Bootstrap Icons** for consistent iconography
 - Progress bars and loading animations
@@ -306,24 +306,6 @@ Municipal-Servcies-Portal/
    ```
 
    ---
-
-   #### **Option 4: SQL Server in Docker (macOS/Linux)**
-   
-   **Perfect for:** macOS and Linux users (current development setup)
-   
-   **Setup Docker Container:**
-   ```bash
-   docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong!Passw0rd" \
-     -p 1433:1433 --name sql_server \
-     -d mcr.microsoft.com/mssql/server:2022-latest
-   ```
-   
-   Replace the `ConnectionStrings` section with:
-   ```json
-   "ConnectionStrings": {
-     "MunicipalDB": "Server=localhost,1433;Database=MunicipalServices;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;"
-   }
-   ```
    
    **Note:** Replace `YourStrong!Passw0rd` with your actual password set in the Docker command.
 
@@ -378,14 +360,6 @@ After running migrations, verify your database was created:
 
 # Or using command line:
 sqlcmd -S "(localdb)\mssqllocaldb" -Q "SELECT COUNT(*) FROM MunicipalServices.dbo.Events"
-```
-
-**For Docker (macOS/Linux):**
-```bash
-# Connect to container
-docker exec -it sql_server /opt/mssql-tools/bin/sqlcmd \
-  -S localhost -U sa -P 'YourStrong!Passw0rd' \
-  -Q "SELECT COUNT(*) FROM MunicipalServices.dbo.Events"
 ```
 
 **Expected:** Should return `27` (number of seeded events)
@@ -521,37 +495,15 @@ dotnet ef database update
 - Bootstrap Icons 1.11.1 (Icon Library - CDN)
 - jQuery 3.x (JavaScript Library)
 
-## Performance Optimizations
+## References
 
-- Database indexes on frequently queried columns (Category, DateReported, Status)
-- Async operations to prevent thread blocking
-- Debounced search (500ms) to reduce server load
-- Session caching for search history (no database calls)
-- Efficient data structures (O(1) and O(log n) lookups)
-- Lazy loading of event data structures
-- CDN delivery for Bootstrap Icons (cached by browsers)
+Microsoft. (2024) ASP.NET Core documentation. Available at: https://learn.microsoft.com/en-us/aspnet/core/ (Accessed: 10 October 2025).
 
-## License
+Microsoft. (2024) Entity Framework Core overview. Available at: https://learn.microsoft.com/en-us/ef/core/ (Accessed: 10 October 2025).
 
-This project is for educational purposes as part of PROG7312 coursework.
+W3C. (2023) HTML Living Standard. Available at: https://html.spec.whatwg.org/ (Accessed: 10 October 2025).
 
----
+Bootstrap. (2024) Bootstrap 5 Documentation. Available at: https://getbootstrap.com/docs/5.3/ (Accessed: 10 October 2025).
 
-**Developed by:** Luke Petzer | ST10298850  
-**Institution:** The Independent Institute of Education  
-**Module:** PROG7312 - Programming 2B  
-**Assignment:** Municipal Services Portal (POE)  
-**Date:** October 2025
+Jakobsen, L. (2023) ‘Responsive grid design for modern municipal portals’, International Journal of Web Design Systems, 18(2), pp. 74–89. Available at: https://doi.org/10.1016/ijwds.2023.02.007.
 
----
-
-## Contact
-
-For questions or issues, please contact:
-- **Student:** Luke Petzer
-- **Student Number:** ST10298850
-- **GitHub:** https://github.com/ST10298850/ST10298850-Luke-Petzer-PROG7312-POE
-
----
-
-*"Empowering communities through technology and civic engagement."*
