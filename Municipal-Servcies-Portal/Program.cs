@@ -6,18 +6,34 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<Municipal_Servcies_Portal.Services.IssueService>();
+
+// Add session support for search history tracking
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromHours(2); // Session expires after 2 hours of inactivity
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+// Add HttpContextAccessor for session access
+builder.Services.AddHttpContextAccessor();
 
 // Add DbContext with SQL Server
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("MunicipalDB")));
 
+// Register IssueService as Scoped (requires DbContext)
+builder.Services.AddScoped<IssueService>();
+
 // Register LocalEventsService (Phase 2)
 builder.Services.AddScoped<ILocalEventsService, LocalEventsService>();
 
+// Register SearchHistoryService for recommendation tracking
+builder.Services.AddScoped<SearchHistoryService>();
+
 var app = builder.Build();
 
-// Seed the database (Phase 1)
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -37,6 +53,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// Enable session middleware (must be before UseAuthorization)
+app.UseSession();
 
 app.UseAuthorization();
 

@@ -17,10 +17,10 @@
         </div>
         <div class="confirmation-summary">
             <div class="summary-title">Report Summary</div>
-            <!-- Reference number (randomized for display) -->
+            <!-- Reference number (uses actual database ID) -->
             <div class="summary-section summary-ref bg-blue-100">
                 <div class="summary-label">Reference Number</div>
-                <div class="summary-value">#MSP-@DateTime.Now.ToString("yyyy")-@(new Random().Next(100000, 999999))</div>
+                <div class="summary-value">#MSP-@DateTime.Now.ToString("yyyy")-@Model.Id.ToString("D6")</div>
             </div>
             <!-- Location -->
             <div class="summary-section">

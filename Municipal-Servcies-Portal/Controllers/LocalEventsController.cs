@@ -30,10 +30,8 @@ public class LocalEventsController : Controller
         // If at least one parameter has a value, perform a search
         if (!string.IsNullOrEmpty(searchName) || !string.IsNullOrEmpty(category) || date.HasValue)
         {
-            // Call the search method with the provided filters
-            // Pass 'date' as both startDate and endDate for exact date matching
-            // You can modify this to support date ranges if needed
-            events = await _localEventsService.SearchEventsAsync(searchName, category, date, date);
+            // For date: show events FROM the selected date onwards (no upper limit)
+            events = await _localEventsService.SearchEventsAsync(searchName, category, date, null);
             
             // Optionally record the search for recommendations feature
             // This helps track user search patterns for personalized recommendations
@@ -44,13 +42,21 @@ public class LocalEventsController : Controller
             // No search parameters provided - show all upcoming events
             events = await _localEventsService.GetUpcomingEventsAsync();
         }
-        
+
+        // Fetch additional data structures for the view
+        var recentlyViewed = _localEventsService.GetRecentlyViewedEvents();
+        var uniqueDates = await _localEventsService.GetUniqueEventDatesAsync();
+        var recommended = await _localEventsService.GetRecommendedEventsAsync();
+
         // Build the ViewModel with the filtered/all events, announcements, and categories
         var viewModel = new LocalEventsViewModel
         {
             Events = events,
             Announcements = await _localEventsService.GetAllAnnouncementsAsync(),
-            Categories = await _localEventsService.GetCategoriesAsync()
+            Categories = await _localEventsService.GetCategoriesAsync(),
+            RecentlyViewedEvents = recentlyViewed,
+            UniqueEventDates = uniqueDates,
+            RecommendedEvents = recommended
         };
         
         return View(viewModel);
