@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Set a new timer - only executes if user stops typing for 500ms
             debounceTimer = setTimeout(function() {
                 performSearch();
-            }, 500); // 500ms delay
+            }, 700); // 700ms delay
         });
     }
     
