@@ -8,7 +8,7 @@ https://github.com/ST10298850/ST10298850-Luke-Petzer-PROG7312-POE.git
 
 ## Link to YouTube Video
 [
-https://youtu.be/6EByHpbRAZs](https://youtu.be/Y9FKudbk_m0)
+[https://youtu.be/6EByHpbRAZs](https://youtu.be/Y9FKudbk_m0)](https://youtu.be/Y9FKudbk_m0)
 
 ## Features
 
@@ -506,6 +506,7 @@ W3C. (2023) HTML Living Standard. Available at: https://html.spec.whatwg.org/ (A
 Bootstrap. (2024) Bootstrap 5 Documentation. Available at: https://getbootstrap.com/docs/5.3/ (Accessed: 10 October 2025).
 
 Jakobsen, L. (2023) ‘Responsive grid design for modern municipal portals’, International Journal of Web Design Systems, 18(2), pp. 74–89. Available at: https://doi.org/10.1016/ijwds.2023.02.007.
+
 
 
 
