@@ -9,7 +9,7 @@ namespace Municipal_Servcies_Portal.Services
     public class SearchHistoryService
     {
         private const string SessionKey = "UserSearchHistory";
-        private const int MaxSearchHistory = 10;
+        private const int MaxSearchHistory = 7;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public SearchHistoryService(IHttpContextAccessor httpContextAccessor)
@@ -20,30 +20,23 @@ namespace Municipal_Servcies_Portal.Services
         /// <summary>
         /// Get the user's search history from session storage
         /// </summary>
-        public Queue<(string? SearchText, string? Category, DateTime? Date)> GetSearchHistory()
+        public List<SearchHistoryItem> GetSearchHistory()
         {
             var session = _httpContextAccessor.HttpContext?.Session;
-            if (session == null) return new Queue<(string? SearchText, string? Category, DateTime? Date)>();
+            if (session == null) return new List<SearchHistoryItem>();
 
             var json = session.GetString(SessionKey);
             if (string.IsNullOrEmpty(json))
-                return new Queue<(string? SearchText, string? Category, DateTime? Date)>();
+                return new List<SearchHistoryItem>();
 
             try
             {
                 var list = JsonSerializer.Deserialize<List<SearchHistoryItem>>(json);
-                if (list == null) return new Queue<(string? SearchText, string? Category, DateTime? Date)>();
-
-                var queue = new Queue<(string? SearchText, string? Category, DateTime? Date)>();
-                foreach (var item in list)
-                {
-                    queue.Enqueue((item.SearchText, item.Category, item.Date));
-                }
-                return queue;
+                return list ?? new List<SearchHistoryItem>();
             }
             catch
             {
-                return new Queue<(string? SearchText, string? Category, DateTime? Date)>();
+                return new List<SearchHistoryItem>();
             }
         }
 
@@ -59,12 +52,17 @@ namespace Municipal_Servcies_Portal.Services
             var history = GetSearchHistory();
             
             // Add new search
-            history.Enqueue((searchText, category, date));
-
-            // Maintain max size
-            while (history.Count > MaxSearchHistory)
+            history.Add(new SearchHistoryItem
             {
-                history.Dequeue();
+                SearchText = searchText,
+                Category = category,
+                Date = date
+            });
+
+            // Maintain max size - remove oldest entries
+            if (history.Count > MaxSearchHistory)
+            {
+                history.RemoveRange(0, history.Count - MaxSearchHistory);
             }
 
             // Save back to session
@@ -74,19 +72,12 @@ namespace Municipal_Servcies_Portal.Services
         /// <summary>
         /// Save search history to session storage
         /// </summary>
-        private void SaveSearchHistory(Queue<(string? SearchText, string? Category, DateTime? Date)> history)
+        private void SaveSearchHistory(List<SearchHistoryItem> history)
         {
             var session = _httpContextAccessor.HttpContext?.Session;
             if (session == null) return;
 
-            var list = history.Select(h => new SearchHistoryItem 
-            { 
-                SearchText = h.SearchText,
-                Category = h.Category, 
-                Date = h.Date 
-            }).ToList();
-
-            var json = JsonSerializer.Serialize(list);
+            var json = JsonSerializer.Serialize(history);
             session.SetString(SessionKey, json);
         }
 
@@ -99,8 +90,10 @@ namespace Municipal_Servcies_Portal.Services
             session?.Remove(SessionKey);
         }
 
-        // Helper class for JSON serialization (tuples don't serialize well)
-        private class SearchHistoryItem
+        /// <summary>
+        /// Helper class for JSON serialization
+        /// </summary>
+        public class SearchHistoryItem
         {
             public string? SearchText { get; set; }
             public string? Category { get; set; }
