@@ -507,3 +507,4 @@ Bootstrap. (2024) Bootstrap 5 Documentation. Available at: https://getbootstrap.
 
 Jakobsen, L. (2023) ‘Responsive grid design for modern municipal portals’, International Journal of Web Design Systems, 18(2), pp. 74–89. Available at: https://doi.org/10.1016/ijwds.2023.02.007.
 
+
