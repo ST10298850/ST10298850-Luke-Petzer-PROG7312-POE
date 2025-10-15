@@ -1,5 +1,5 @@
 // IssueController.cs
-// Handles issue creation, file uploads, and confirmation display.
+// Handles issue creation, file uploads, and confirmation display with database persistence.
 using Microsoft.AspNetCore.Mvc;
 using Municipal_Servcies_Portal.Models;
 using Municipal_Servcies_Portal.Services;
@@ -9,7 +9,7 @@ namespace Municipal_Servcies_Portal.Controllers;
 
 public class IssueController : Controller
 {
-    // Service for managing issues.
+    // Service for managing issues with database persistence.
     private readonly IssueService _service;
     // Provides access to web root for file uploads.
     private readonly IWebHostEnvironment _env;
@@ -33,7 +33,7 @@ public class IssueController : Controller
     }
 
     /// <summary>
-    /// Handles form submission, file uploads, and redirects to confirmation.
+    /// Handles form submission, file uploads, saves to database, and redirects to confirmation.
     /// </summary>
     /// <param name="location">Location of the issue.</param>
     /// <param name="category">Category of the issue.</param>
@@ -42,25 +42,31 @@ public class IssueController : Controller
     /// <param name="notificationEmail">Optional notification email.</param>
     /// <param name="notificationPhone">Optional notification phone.</param>
     [HttpPost]
-    public IActionResult Create(string location, string category, string description, IFormFile[]? attachments, string? notificationEmail, string? notificationPhone)
+    public async Task<IActionResult> Create(string location, string category, string description, 
+        IFormFile[]? attachments, string? notificationEmail, string? notificationPhone)
     {
+        // Handle file uploads
         var fileNames = new List<string>();
         if (attachments != null)
         {
             var uploads = Path.Combine(_env.WebRootPath, "uploads");
             Directory.CreateDirectory(uploads);
+            
             foreach (var file in attachments)
             {
                 if (file != null && file.Length > 0)
                 {
                     var fileName = Path.GetFileName(file.FileName);
                     var filePath = Path.Combine(uploads, fileName);
+                    
                     using var stream = new FileStream(filePath, FileMode.Create);
-                    file.CopyTo(stream);
+                    await file.CopyToAsync(stream);
                     fileNames.Add(fileName);
                 }
             }
         }
+        
+        // Create issue object
         var issue = new Issue
         {
             Location = location,
@@ -70,35 +76,28 @@ public class IssueController : Controller
             NotificationEmail = string.IsNullOrWhiteSpace(notificationEmail) ? null : notificationEmail,
             NotificationPhone = string.IsNullOrWhiteSpace(notificationPhone) ? null : notificationPhone
         };
-        _service.AddIssue(issue);
-        // Store issue data in TempData for confirmation page.
-        TempData["IssueLocation"] = issue.Location;
-        TempData["IssueCategory"] = issue.Category;
-        TempData["IssueDescription"] = issue.Description;
-        TempData["IssueAttachments"] = JsonSerializer.Serialize(issue.AttachmentPaths);
-        TempData["IssueDateReported"] = issue.DateReported.ToString("g");
-        TempData["IssueNotificationEmail"] = issue.NotificationEmail;
-        TempData["IssueNotificationPhone"] = issue.NotificationPhone;
-        return RedirectToAction("Confirmation");
+        
+        // Save to database
+        await _service.AddIssueAsync(issue);
+        
+        // Store issue ID in TempData for confirmation page
+        TempData["IssueId"] = issue.Id;
+        
+        return RedirectToAction("Confirmation", new { id = issue.Id });
     }
 
     /// <summary>
-    /// Displays the confirmation page with submitted issue details.
+    /// Displays the confirmation page with submitted issue details from database.
     /// </summary>
-    public IActionResult Confirmation()
+    /// <param name="id">The issue ID to display.</param>
+    public async Task<IActionResult> Confirmation(int id)
     {
-        var attachmentsJson = TempData["IssueAttachments"]?.ToString();
-        var attachments = string.IsNullOrEmpty(attachmentsJson) ? new List<string>() : JsonSerializer.Deserialize<List<string>>(attachmentsJson);
-        var issue = new Issue
+        var issue = await _service.GetIssueByIdAsync(id);
+        
+        if (issue == null)
         {
-            Location = TempData["IssueLocation"]?.ToString() ?? "",
-            Category = TempData["IssueCategory"]?.ToString() ?? "",
-            Description = TempData["IssueDescription"]?.ToString() ?? "",
-            AttachmentPaths = attachments,
-            DateReported = DateTime.TryParse(TempData["IssueDateReported"]?.ToString(), out var date) ? date : DateTime.Now,
-            NotificationEmail = TempData["IssueNotificationEmail"]?.ToString(),
-            NotificationPhone = TempData["IssueNotificationPhone"]?.ToString()
-        };
+            return RedirectToAction("Create");
+        }
 
         return View(issue);
     }

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="~/css/issues.css" />
     <link rel="stylesheet" href="~/css/confirmation.css" />
     <link rel="stylesheet" href="~/css/comingsoon.css" />
+    <link rel="stylesheet" href="~/css/localevents.css" />
 </head>
 <body>
 <header class="custom-header">
@@ -27,7 +28,7 @@
             <nav class="header-nav">
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">Dashboard</a>
                 <a asp-area="" asp-controller="Issue" asp-action="Create" class="nav-link">Report Issues</a>
-                <a asp-area="" asp-controller="Home" asp-action="ComingSoon" class="nav-link">Local Events</a>
+                <a asp-area="" asp-controller="LocalEvents" asp-action="Index" class="nav-link">Local Events</a>
                 <a asp-area="" asp-controller="Home" asp-action="ComingSoon" class="nav-link">Track Status</a>
             </nav>
         </div>
@@ -78,6 +79,7 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/js/localevents.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

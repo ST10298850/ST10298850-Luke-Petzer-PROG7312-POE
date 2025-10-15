@@ -301,12 +301,22 @@ function initializeIssueForm() {
     }
 }
 
-// Home page "Get Started" button functionality
+// Home page "Report Issue" button functionality
 document.addEventListener('DOMContentLoaded', function() {
-    var btn = document.getElementById('getStartedBtn');
+    var btn = document.getElementById('ReportIssueBtn');
     if (btn) {
         btn.addEventListener('click', function() {
             window.location.href = '/Issue/Create';
+        });
+    }
+});
+
+// Home page "Report Issue" button functionality
+document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('LocalEventsBtn');
+    if (btn) {
+        btn.addEventListener('click', function() {
+            window.location.href = '/LocalEvents/Index';
         });
     }
 });
