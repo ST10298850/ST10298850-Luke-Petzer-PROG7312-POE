@@ -214,50 +214,38 @@ namespace Municipal_Servcies_Portal.Services
 
             // Analyze search history including search text
             var categoryCounts = new Dictionary<string, int>();
-            var dateCounts = new Dictionary<DateTime, int>();
             var searchTerms = new List<string>();
             
-            foreach (var (searchText, cat, date) in searchHistory)
+            foreach (var item in searchHistory)
             {
                 // Track categories
-                if (!string.IsNullOrEmpty(cat))
+                if (!string.IsNullOrEmpty(item.Category))
                 {
-                    if (!categoryCounts.ContainsKey(cat)) categoryCounts[cat] = 0;
-                    categoryCounts[cat]++;
-                }
-                
-                // Track dates
-                if (date.HasValue)
-                {
-                    var d = date.Value.Date;
-                    if (!dateCounts.ContainsKey(d)) dateCounts[d] = 0;
-                    dateCounts[d]++;
+                    if (!categoryCounts.ContainsKey(item.Category)) 
+                        categoryCounts[item.Category] = 0;
+                    categoryCounts[item.Category]++;
                 }
                 
                 // Track search terms for keyword-based recommendations
-                if (!string.IsNullOrEmpty(searchText))
+                if (!string.IsNullOrEmpty(item.SearchText))
                 {
-                    searchTerms.Add(searchText.ToLower());
+                    searchTerms.Add(item.SearchText.ToLower());
                 }
             }
             
-            // Get most frequent category and date
+            // Get most frequent category
             var topCategory = categoryCounts.OrderByDescending(x => x.Value).FirstOrDefault().Key;
-            var topDate = dateCounts.OrderByDescending(x => x.Value).FirstOrDefault().Key;
 
             // Build recommendations
             var recommended = new List<Event>();
             
             // Strategy 1: Recommend based on most searched category
-            if (!string.IsNullOrEmpty(topCategory))
+            if (!string.IsNullOrEmpty(topCategory) && _eventsByCategory.ContainsKey(topCategory))
             {
-                if (_eventsByCategory.ContainsKey(topCategory))
-                {
-                    recommended.AddRange(_eventsByCategory[topCategory]
-                        .Where(e => e.StartDate >= DateTime.Now)
-                        .OrderBy(e => e.StartDate)
-                        .Take(5));
-                }
+                recommended.AddRange(_eventsByCategory[topCategory]
+                    .Where(e => e.StartDate >= DateTime.Now)
+                    .OrderBy(e => e.StartDate)
+                    .Take(5));
             }
             
             // Strategy 2: Recommend events matching recent search terms
@@ -280,23 +268,7 @@ namespace Municipal_Servcies_Portal.Services
                 recommended.AddRange(matchingEvents);
             }
             
-            // Strategy 3: Recommend events from most searched date range
-            if (recommended.Count < 5 && topDate != default)
-            {
-                var existingIds = recommended.Select(e => e.Id).ToHashSet();
-                foreach (var kvp in _eventsByDate)
-                {
-                    if (kvp.Key >= topDate && recommended.Count < 5)
-                    {
-                        var dateEvents = kvp.Value
-                            .Where(e => e.StartDate >= DateTime.Now && !existingIds.Contains(e.Id));
-                        recommended.AddRange(dateEvents);
-                    }
-                }
-                recommended = recommended.OrderBy(e => e.StartDate).Take(5).ToList();
-            }
-            
-            // Strategy 4: Fallback to general upcoming events
+            // Strategy 3: Fallback to general upcoming events
             if (recommended.Count < 5)
             {
                 var existingIds = recommended.Select(e => e.Id).ToHashSet();

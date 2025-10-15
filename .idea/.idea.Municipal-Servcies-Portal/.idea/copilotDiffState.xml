@@ -3,6 +3,15 @@
   <component name="CopilotDiffPersistence">
     <option name="pendingDiffs">
       <map>
+        <entry key="$PROJECT_DIR$/Municipal-Servcies-Portal/appsettings.json">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/Municipal-Servcies-Portal/appsettings.json" />
+              <option name="originalContent" value="{&#10;  &quot;ConnectionStrings&quot;: {&#10;    &quot;MunicipalDB&quot;: &quot;Server=localhost,1433;Database=MunicipalServices;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;&quot;&#10;  },&#10;  &quot;Logging&quot;: {&#10;    &quot;LogLevel&quot;: {&#10;      &quot;Default&quot;: &quot;Information&quot;,&#10;      &quot;Microsoft.AspNetCore&quot;: &quot;Warning&quot;&#10;    }&#10;  },&#10;  &quot;AllowedHosts&quot;: &quot;*&quot;&#10;}&#10;" />
+              <option name="updatedContent" value="{&#10;  &quot;ConnectionStrings&quot;: {&#10;    &quot;MunicipalDB&quot;: &quot;Server=localhost,1433;Database=MunicipalServices;User Id=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;&quot;&#10;  },&#10;  &quot;Logging&quot;: {&#10;    &quot;LogLevel&quot;: {&#10;      &quot;Default&quot;: &quot;Information&quot;,&#10;      &quot;Microsoft.AspNetCore&quot;: &quot;Warning&quot;&#10;    }&#10;  },&#10;  &quot;AllowedHosts&quot;: &quot;*&quot;&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SEARCH_IMPLEMENTATION.md">
           <value>
             <PendingDiffInfo>
